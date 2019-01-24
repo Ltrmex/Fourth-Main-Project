@@ -6,6 +6,7 @@
 # Imports
 from nltk.tokenize import sent_tokenize, word_tokenize 
 from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
 
 # Download the required NLTK data
 # nltk.download()
@@ -13,10 +14,6 @@ from nltk.corpus import stopwords
 # tokenizing
     # form of grouping things
     # work tokenizers, sentence tokenizers
-# lexicon
-    # words and their means
-# corporas
-    # body of text, ex: medical jounals, presidential speeches, english language
 
 def preprocessing():    
     exampleText = "This is being done for main group project. Main goal of this assignment is to get more familiar with python programming language. Another objective is to develop AI chatbot with ability to interact and engage with a human being."
@@ -65,5 +62,27 @@ def stopWords():
 
     return
 
+
+
+def stemming():
+    # Stemming 
+        # different affixes of words eg. swim & swimming mean the same things, so stemming is used to save space in database of words
+    porterStemmer = PorterStemmer()
+    exampleWords = ["playing", "plays", "played", "playfully"]  # array of words to be stemmed
+
+    # Loop through exampleWords
+    for w in exampleWords:
+        print(porterStemmer.stem(w))    # stem each word and print it
+
+    # Example sentence
+    exampleSentence = "Today I played with python playfully to determine if playing would give me new knowledge."
+
+    # Tokenize exampleSentence and loop through words
+    for w in word_tokenize(exampleSentence): 
+        print(porterStemmer.stem(w))    # print stemmed words
+
+    return
+
 # preprocessing()
 # stopWords()
+# stemming()
