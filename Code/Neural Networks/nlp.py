@@ -4,8 +4,9 @@
 # Goal of the python code below is to familiarize ourselves with NLP (Natural Language Processing)
 
 # Imports
-from nltk.tokenize import sent_tokenize, word_tokenize 
-from nltk.corpus import stopwords
+import nltk
+from nltk.tokenize import sent_tokenize, word_tokenize, PunktSentenceTokenizer
+from nltk.corpus import stopwords, state_union
 from nltk.stem import PorterStemmer
 
 # Download the required NLTK data
@@ -83,6 +84,30 @@ def stemming():
 
     return
 
+
+
+def speechTagging():
+    # Part of Speech tagging
+        # tags different words into categories
+    # To get valid results its best to train on two different datasets
+    trainText = state_union.raw("2005-GWBush.txt")   # used to train
+    exampleText = state_union.raw("2006-GWBush.txt")    # used to test
+
+    customSentenceTokenizer = PunktSentenceTokenizer(trainText)   # custom tokenizer
+    tokenized = customSentenceTokenizer.tokenize(exampleText)   # sentence
+
+    try:
+        for t in tokenized: # loop through tokenized
+            words = word_tokenize(t)    # tokenize words
+            tagged = nltk.pos_tag(words)    # part of speech tagging
+            print(tagged)   # print tagged words
+
+    except Exception as e:
+        print(str(e))
+    
+    return
+
 # preprocessing()
 # stopWords()
 # stemming()
+# speechTagging()
