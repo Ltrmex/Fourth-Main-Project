@@ -87,6 +87,42 @@ def stemming():
 
 
 def speechTagging():
+    # CC	coordinating conjunction
+    # CD	cardinal digit
+    # DT	determiner
+    # EX	existential there (like: "there is" ... think of it like "there exists")
+    # FW	foreign word
+    # IN	preposition/subordinating conjunction
+    # JJ	adjective	'big'
+    # JJR	adjective, comparative	'bigger'
+    # JJS	adjective, superlative	'biggest'
+    # LS	list marker	1)
+    # MD	modal	could, will
+    # NN	noun, singular 'desk'
+    # NNS	noun plural	'desks'
+    # NNP	proper noun, singular	'Harrison'
+    # NNPS	proper noun, plural	'Americans'
+    # PDT	predeterminer	'all the kids'
+    # POS	possessive ending	parent\'s
+    # PRP	personal pronoun	I, he, she
+    # PRP$	possessive pronoun	my, his, hers
+    # RB	adverb	very, silently,
+    # RBR	adverb, comparative	better
+    # RBS	adverb, superlative	best
+    # RP	particle	give up
+    # TO	to	go 'to' the store.
+    # UH	interjection	errrrrrrrm
+    # VB	verb, base form	take
+    # VBD	verb, past tense	took
+    # VBG	verb, gerund/present participle	taking
+    # VBN	verb, past participle	taken
+    # VBP	verb, sing. present, non-3d	take
+    # VBZ	verb, 3rd person sing. present	takes
+    # WDT	wh-determiner	which
+    # WP	wh-pronoun	who, what
+    # WP$	possessive wh-pronoun	whose
+    # WRB	wh-abverb	where, when
+
     # Part of Speech tagging
         # tags different words into categories
     # To get valid results its best to train on two different datasets
@@ -107,7 +143,45 @@ def speechTagging():
     
     return
 
+
+
+def chunking():
+    # Chunking - grouping words into meaningful chunks. One of the main goals of chunking is to group into what are 
+    # known as "noun phrases." These are phrases of one or more words that contain a noun, maybe some descriptive 
+    # words, maybe a verb, and maybe something like an adverb. The idea is to group nouns with the words that are in relation to them.
+    trainText = state_union.raw("2005-GWBush.txt")   # used to train
+    exampleText = state_union.raw("2006-GWBush.txt")    # used to test
+
+    customSentenceTokenizer = PunktSentenceTokenizer(trainText)   # custom tokenizer
+    tokenized = customSentenceTokenizer.tokenize(exampleText)   # sentence
+
+    try:
+        for t in tokenized: # loop through tokenized
+            words = word_tokenize(t)    # tokenize words
+            tagged = nltk.pos_tag(words)    # part of speech tagging
+            
+            chunkGram = r"""Chunk: {<RB.?>*<VB.?>*<NNP>+<NN>?}"""   # RB - find any adverb, NNP - proper noun
+            chunkParser = nltk.RegexpParser(chunkGram)  # pass chunk as a regular expression
+            chunked = chunkParser.parse(tagged) # pass tag into chunkParser
+
+            # Accessing data via program
+            for subtree in chunked.subtrees():
+                    print(subtree)
+
+            # Getting just the chunks, ignoring the rest
+            for subtree in chunked.subtrees(filter=lambda t: t.label() == 'Chunk'):
+                    print(subtree)
+
+            # chunked.draw() # draw chunk
+            print(chunked)
+            
+    except Exception as e:
+        print(str(e))
+    
+    return
+
 # preprocessing()
 # stopWords()
 # stemming()
 # speechTagging()
+# chunking()
