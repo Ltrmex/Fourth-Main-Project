@@ -180,8 +180,37 @@ def chunking():
     
     return
 
+
+
+def chinking():
+    # Chinking - is a lot like chunking, it is basically a way for you to remove a chunk from a chunk. The chunk that 
+    # you remove from your chunk is your chink.
+    trainText = state_union.raw("2005-GWBush.txt")   # used to train
+    exampleText = state_union.raw("2006-GWBush.txt")    # used to test
+
+    customSentenceTokenizer = PunktSentenceTokenizer(trainText)   # custom tokenizer
+    tokenized = customSentenceTokenizer.tokenize(exampleText)   # sentence
+
+    try:
+        for t in tokenized: # loop through tokenized
+            words = word_tokenize(t)    # tokenize words
+            tagged = nltk.pos_tag(words)    # part of speech tagging
+            
+            chunkGram = r"""Chunk: {<.*>+}
+                                        }<VB.?|IN|DT|TO>+{"""
+            chunkParser = nltk.RegexpParser(chunkGram)  # pass chunk as a regular expression
+            chunked = chunkParser.parse(tagged) # pass tag into chunkParser
+
+            chunked.draw() # draw chunk
+            
+    except Exception as e:
+        print(str(e))
+
+    return
+
 # preprocessing()
 # stopWords()
 # stemming()
 # speechTagging()
 # chunking()
+# chinking()
