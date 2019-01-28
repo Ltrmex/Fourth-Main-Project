@@ -7,7 +7,7 @@
 import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize, PunktSentenceTokenizer
 from nltk.corpus import stopwords, state_union
-from nltk.stem import PorterStemmer
+from nltk.stem import PorterStemmer, WordNetLemmatizer
 
 # Download the required NLTK data
 # nltk.download()
@@ -239,6 +239,29 @@ def namedEntityRecognition():
         print(str(e))
     return
 
+
+
+def lemmatizing():
+    # Lemmatizing 
+    # Similar operation to stemming is called lemmatizing. The major difference between these is, as you saw earlier, 
+    # stemming can often create non-existent words. So, your root stem, meaning the word you end up with, is not something you 
+    # can just look up in a dictionary. A root lemma, on the other hand, is a real word. Many times, you will wind up with a very 
+    # similar word, but sometimes, you will wind up with a completely different word.
+
+    lemmatizer = WordNetLemmatizer()
+
+    print(lemmatizer.lemmatize("cats"))
+    print(lemmatizer.lemmatize("cacti"))
+    print(lemmatizer.lemmatize("geese"))
+    print(lemmatizer.lemmatize("rocks"))
+    print(lemmatizer.lemmatize("python"))
+    print(lemmatizer.lemmatize("better", pos="a"))  # adjective
+    print(lemmatizer.lemmatize("best", pos="a"))
+    print(lemmatizer.lemmatize("run"))
+    print(lemmatizer.lemmatize("run",'v'))  # verb
+
+    return
+
 # preprocessing()
 # stopWords()
 # stemming()
@@ -246,3 +269,4 @@ def namedEntityRecognition():
 # chunking()
 # chinking()
 # namedEntityRecognition()
+# lemmatizing()
