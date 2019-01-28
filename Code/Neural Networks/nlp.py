@@ -6,7 +6,7 @@
 # Imports
 import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize, PunktSentenceTokenizer
-from nltk.corpus import stopwords, state_union
+from nltk.corpus import stopwords, state_union, gutenberg
 from nltk.stem import PorterStemmer, WordNetLemmatizer
 
 # Download the required NLTK data
@@ -262,6 +262,21 @@ def lemmatizing():
 
     return
 
+
+
+def corpora():
+    # Corpora - The NLTK corpus is a massive collection of all kinds of natural language data sets 
+    # C:\Users\Ltrmex\AppData\Roaming\nltk_data\corpora
+    print(nltk.__file__) # location of the NLTK module's __init__.py
+
+    sample = gutenberg.raw("bible-kjv.txt") # access sample text
+
+    tok = sent_tokenize(sample)
+
+    for x in range(5):
+        print(tok[x])
+    return
+
 # preprocessing()
 # stopWords()
 # stemming()
@@ -270,3 +285,4 @@ def lemmatizing():
 # chinking()
 # namedEntityRecognition()
 # lemmatizing()
+# corpora()
