@@ -6,11 +6,11 @@
 # Imports
 import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize, PunktSentenceTokenizer
-from nltk.corpus import stopwords, state_union, gutenberg
+from nltk.corpus import stopwords, state_union, gutenberg, wordnet
 from nltk.stem import PorterStemmer, WordNetLemmatizer
 
 # Download the required NLTK data
-# nltk.download()
+#nltk.download()
 
 # tokenizing
     # form of grouping things
@@ -277,6 +277,50 @@ def corpora():
         print(tok[x])
     return
 
+def WordNet():
+    # WordNet is a part of Copra. It allows to take words and checks for synonyms,
+    # antonysm, definitions or context of that word.
+
+    # Declare synonyms antonysm
+    syns = wordnet.synsets("program") 
+    synonyms = []
+    antonyms= []
+    
+    # Output list of synsets for word program
+    print(syns[0].name())
+    # Outut only the word
+    print(syns[0].lemmas()[0].name())
+    # Checks for definition
+    print(syns[0].definition())
+    # Checks for examples
+    print(syns[0].examples())
+
+    # Loops through list of synonyms for word good
+    for syn in wordnet.synsets("good"):
+        for l in syn.lemmas():
+            synonyms.append(l.name())
+            # Checks for antonyms to word good
+            if l.antonyms():
+                antonyms.append(l.antonyms()[0].name())
+    print(set(synonyms))
+    print(set(antonyms))
+
+    # Similarity Part
+
+    # Declare words
+    w1 = wordnet.synset("car.n.01")
+    w2 = wordnet.synset("wheel.n.01")
+
+    # Calculate % of similarity between w1 and w2
+    print(w1.wup_similarity(w2))
+
+    w1 = wordnet.synset("house.n.01")
+    w2 = wordnet.synset("window.n.01")
+
+    # Calculate % of similarity between w1 and w2
+    print(w1.wup_similarity(w2))
+    return
+
 # preprocessing()
 # stopWords()
 # stemming()
@@ -286,3 +330,4 @@ def corpora():
 # namedEntityRecognition()
 # lemmatizing()
 # corpora()
+WordNet()
