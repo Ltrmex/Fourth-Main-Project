@@ -333,12 +333,27 @@ def textClassification():
         all_words.append(w.lower())
     
     # Converts all_words to NLTK frequency distribution
-    all_words = nltk.FreqDist(all_words)
+    all_words = nltk.FreqDist(all_words) # ordered from most common to the least common word
     # Outputs 20 most common words
     #print(all_words.most_common(20))
     # Amout of word in movie_reviews
-    print(all_words["dog"]) 
+    # print(all_words["dog"]) 
 
+    # Limit on amount of words
+    word_features = list(all_words.keys()) [:3000]  # Sets the amout of words
+
+    def find_features(document):
+        # Find feature
+        words = set(document)
+        features = {}
+        for w in word_features: # if on of top 3000 words is withind this document will return true
+            features[w]= (w in words)
+
+        return features
+
+    print(find_features(movie_reviews.words('neg/cv000_29416.txt')))
+    
+    #featuresets = [(find_features(rev), category) for (rev, category) in documents]
     return
 # preprocessing()
 # stopWords()
@@ -351,3 +366,4 @@ def textClassification():
 # corpora()
 # WordNet()
 textClassification()
+
