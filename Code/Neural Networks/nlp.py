@@ -6,6 +6,7 @@
 # Imports
 import nltk
 import random
+import pickle
 from nltk.tokenize import sent_tokenize, word_tokenize, PunktSentenceTokenizer
 from nltk.corpus import stopwords, state_union, gutenberg, wordnet, movie_reviews
 from nltk.stem import PorterStemmer, WordNetLemmatizer
@@ -363,10 +364,21 @@ def textClassification():
     # for each feature
     # posterior it's likehood of somethng positive
 
-    classifier = nltk.NaiveBayesClassifier.train(training_set)
+    #classifier = nltk.NaiveBayesClassifier.train(training_set)
+    classifier_f = open("naivebayes.pickle","rb") #read in bytes
+    classifier = pickle.load(classifier_f)
+    classifier_f.close()
     # outputs accuracy
     print("Naive Bayes Algotithm:",(nltk.classify.accuracy(classifier, testing_set))*100)
     classifier.show_most_informative_features(20) # Shows most popular words on both sides
+
+    # Saving traning algorith Part
+    # Pickle  can save python objects
+
+    #save_classifier = open("naivebayes.pickle","wb") #write in bytes
+    #pickle.dump(classifier, save_classifier)
+    #save_classifier.close()
+
     return
 # preprocessing()
 # stopWords()
