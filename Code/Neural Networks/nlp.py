@@ -351,9 +351,22 @@ def textClassification():
 
         return features
 
-    print(find_features(movie_reviews.words('neg/cv000_29416.txt')))
+    #print(find_features(movie_reviews.words('neg/cv000_29416.txt')))
     
-    #featuresets = [(find_features(rev), category) for (rev, category) in documents]
+    featuresets = [(find_features(rev), category) for (rev, category) in documents]
+    
+    # Declare sets for dataset
+    training_set = featuresets[:1900] # trains
+    testing_set = featuresets[:1900]# feed through the feature sets
+
+    # Naive Bayes algorithm it's type of classifier that's works on very independent assuption
+    # for each feature
+    # posterior it's likehood of somethng positive
+
+    classifier = nltk.NaiveBayesClassifier.train(training_set)
+    # outputs accuracy
+    print("Naive Bayes Algotithm:",(nltk.classify.accuracy(classifier, testing_set))*100)
+    classifier.show_most_informative_features(20) # Shows most popular words on both sides
     return
 # preprocessing()
 # stopWords()
