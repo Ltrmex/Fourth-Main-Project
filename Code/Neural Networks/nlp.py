@@ -1,12 +1,13 @@
-# Author: Maciej Majchrzak
+# Author: Maciej Majchrzak, Kamila Michel
 # Reference: https://youtu.be/FLZvOKSCkxY
 
 # Goal of the python code below is to familiarize ourselves with NLP (Natural Language Processing)
 
 # Imports
 import nltk
+import random
 from nltk.tokenize import sent_tokenize, word_tokenize, PunktSentenceTokenizer
-from nltk.corpus import stopwords, state_union, gutenberg, wordnet
+from nltk.corpus import stopwords, state_union, gutenberg, wordnet, movie_reviews
 from nltk.stem import PorterStemmer, WordNetLemmatizer
 
 # Download the required NLTK data
@@ -63,8 +64,6 @@ def stopWords():
 
     return
 
-
-
 def stemming():
     # Stemming 
         # different affixes of words eg. swim & swimming mean the same things, so stemming is used to save space in database of words
@@ -83,8 +82,6 @@ def stemming():
         print(porterStemmer.stem(w))    # print stemmed words
 
     return
-
-
 
 def speechTagging():
     # CC	coordinating conjunction
@@ -143,8 +140,6 @@ def speechTagging():
     
     return
 
-
-
 def chunking():
     # Chunking - grouping words into meaningful chunks. One of the main goals of chunking is to group into what are 
     # known as "noun phrases." These are phrases of one or more words that contain a noun, maybe some descriptive 
@@ -180,8 +175,6 @@ def chunking():
     
     return
 
-
-
 def chinking():
     # Chinking - is a lot like chunking, it is basically a way for you to remove a chunk from a chunk. The chunk that 
     # you remove from your chunk is your chink.
@@ -207,7 +200,6 @@ def chinking():
         print(str(e))
 
     return
-
 
 def namedEntityRecognition():
     # Named Entity Recognition
@@ -239,8 +231,6 @@ def namedEntityRecognition():
         print(str(e))
     return
 
-
-
 def lemmatizing():
     # Lemmatizing 
     # Similar operation to stemming is called lemmatizing. The major difference between these is, as you saw earlier, 
@@ -261,8 +251,6 @@ def lemmatizing():
     print(lemmatizer.lemmatize("run",'v'))  # verb
 
     return
-
-
 
 def corpora():
     # Corpora - The NLTK corpus is a massive collection of all kinds of natural language data sets 
@@ -321,6 +309,37 @@ def WordNet():
     print(w1.wup_similarity(w2))
     return
 
+def textClassification():
+    # Text Classifier for sentiment analysis.
+
+    # List of tuples. Tuple is th words(features). Featurec can be train
+    # based on tag or category
+    # Documents for training and testing sets
+    documents = [(list(movie_reviews.words(fileid)), category)
+    # category positive or negative
+    for category in movie_reviews.categories()
+    for fileid in movie_reviews.fileids(category)]
+
+    # Shuffle documents
+    random.shuffle(documents)
+
+    # Output first elemrnt in documents
+    #print(documents[1])
+
+    # Declare word list
+    all_words = []
+    # Adds words to the list
+    for w in movie_reviews.words():
+        all_words.append(w.lower())
+    
+    # Converts all_words to NLTK frequency distribution
+    all_words = nltk.FreqDist(all_words)
+    # Outputs 20 most common words
+    #print(all_words.most_common(20))
+    # Amout of word in movie_reviews
+    print(all_words["dog"]) 
+
+    return
 # preprocessing()
 # stopWords()
 # stemming()
@@ -330,4 +349,5 @@ def WordNet():
 # namedEntityRecognition()
 # lemmatizing()
 # corpora()
-WordNet()
+# WordNet()
+textClassification()
