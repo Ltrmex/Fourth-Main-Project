@@ -271,26 +271,7 @@ def corpora():
     for x in range(5):
         print(tok[x])
     return
-# Combine the votes of all of the classifiers, and then classified the text whatever the majority vote was
-# Inherit from ClassifierI class from Nl
-class VoteClassifier(ClassifierI):
-    def __init__(self, *classfiers): #Always run without calling and passes list of classiers through vote classfier
-        self._classfiers = classfiers 
-    def classify(self, features): # synonymous with the NLTK classfiers 
-        votes = []
-        for c in self._classfiers:
-            v = c.classify(features) # for each classfier get vote
-            votes.append(v)
-        return mode(votes) # Most votes
 
-    def confidence(self, features):
-        votes = []
-        for c in self._classfiers:
-            v = c.classify(features)
-            votes.append(v)
-        choice_votes = votes.count(mode(votes)) # counts how many occurances of that most popular vote were in that list
-        conf = choice_votes/len(votes)
-        return conf
 
 def WordNet():
     # WordNet is a part of Copra. It allows to take words and checks for synonyms,
@@ -335,30 +316,53 @@ def WordNet():
     # Calculate % of similarity between w1 and w2
     print(w1.wup_similarity(w2))
     return
+# Combine the votes of all of the classifiers, and then classified the text whatever the majority vote was
+# Inherit from ClassifierI class from Nl
+class VoteClassifier(ClassifierI):
+    def __init__(self, *classfiers): #Always run without calling and passes list of classiers through vote classfier
+        self._classfiers = classfiers 
+    def classify(self, features): # synonymous with the NLTK classfiers 
+        votes = []
+        for c in self._classfiers:
+            v = c.classify(features) # for each classfier get vote
+            votes.append(v)
+        return mode(votes) # Most votes
+
+    def confidence(self, features):
+        votes = []
+        for c in self._classfiers:
+            v = c.classify(features)
+            votes.append(v)
+        choice_votes = votes.count(mode(votes)) # counts how many occurances of that most popular vote were in that list
+        conf = choice_votes/len(votes)
+        return conf
 
 def textClassification():
-    # Text Classifier for sentiment analysis.
+    #Acces a file
+    short_pos = open("positive.txt", "r").read()
+    short_neg = open("negative.txt", "r").read()
 
-    # List of tuples. Tuple is th words(features). Featurec can be train
-    # based on tag or category
-    # Documents for training and testing sets
-    documents = [(list(movie_reviews.words(fileid)), category)
-    # category positive or negative
-    for category in movie_reviews.categories()
-    for fileid in movie_reviews.fileids(category)]
+    # declare list of documents
+    documents = []
 
-    # Shuffle documents
-    #random.shuffle(documents)
+    for r in short_pos.split('\n'):
+        documents.append((r, "pos"))
+    
+    for r in short_neg.split('\n'):
+        documents.append((r, "neg"))
 
-    # Output first elemrnt in documents
-    #print(documents[1])
+    all_words= []
 
-    # Declare word list
-    all_words = []
-    # Adds words to the list
-    for w in movie_reviews.words():
+    # Converts words
+    short_pos_words = word_tokenize(short_pos)
+    short_neg_words = word_tokenize(short_neg)
+
+    for w in short_pos_words:
         all_words.append(w.lower())
     
+    for w in short_neg_words:
+        all_words.append(w.lower())
+
     # Converts all_words to NLTK frequency distribution
     all_words = nltk.FreqDist(all_words) # ordered from most common to the least common word
     # Outputs 20 most common words
@@ -367,37 +371,37 @@ def textClassification():
     # print(all_words["dog"]) 
 
     # Limit on amount of words
-    word_features = list(all_words.keys()) [:3000]  # Sets the amout of words
+    word_features = list(all_words.keys()) [:5000]  # Sets the amout of words
 
     def find_features(document):
         # Find feature
-        words = set(document)
+        words = word_tokenize(document)
         features = {}
         for w in word_features: # if on of top 3000 words is withind this document will return true
             features[w]= (w in words)
-
         return features
 
     #print(find_features(movie_reviews.words('neg/cv000_29416.txt')))
     
     featuresets = [(find_features(rev), category) for (rev, category) in documents]
     
+    random.shuffle(featuresets)
     # Declare sets for dataset with positive data examples
-    training_set = featuresets[:100] # trains
-    testing_set = featuresets[:100]# feed through the feature sets
+    training_set = featuresets[:10000] # trains
+    testing_set = featuresets[10000:]# feed through the feature sets
 
     # Declare sets for dataset with negative data examples
-    training_set = featuresets[:1900] # trains
-    testing_set = featuresets[:1900]# feed through the feature sets
+    #training_set = featuresets[:100] # trains
+    #testing_set = featuresets[100:]# feed through the feature sets
     
     # Naive Bayes algorithm it's type of classifier that's works on very independent assuption
     # for each feature
     # posterior it's likehood of somethng positive
 
-    #classifier = nltk.NaiveBayesClassifier.train(training_set)
-    classifier_f = open("naivebayes.pickle","rb") #read in bytes
-    classifier = pickle.load(classifier_f)
-    classifier_f.close()
+    classifier = nltk.NaiveBayesClassifier.train(training_set)
+    #classifier_f = open("naivebayes.pickle","rb") #read in bytes
+    #classifier = pickle.load(classifier_f)
+    #classifier_f.close()
     # outputs accuracy
     print("Original Naive Bayes Algotithm:",(nltk.classify.accuracy(classifier, testing_set))*100)
     classifier.show_most_informative_features(20) # Shows most popular words on both sides
@@ -451,7 +455,7 @@ def textClassification():
 
     voted_classfier = VoteClassifier(classifier, MNB_classifier, LogisticRegression_classfier, LinearSVC_classfier, NuSVC_classfier, BernoulliNB_classifier)
     print("voted_classfier accuracy percent:",(nltk.classify.accuracy(voted_classfier, testing_set))*100)
-    print("Classification:", voted_classfier.classify(testing_set[0][0]), "Confidence %", voted_classfier.confidence(testing_set[0][0]))
+    #print("Classification:", voted_classfier.classify(testing_set[0][0]), "Confidence %", voted_classfier.confidence(testing_set[0][0]))
 
 
     #print("Classification:", voted_classfier.classify(testing_set[1][0]), "Confidence %", voted_classfier.confidence(testing_set[1][0]))
