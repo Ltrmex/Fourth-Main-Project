@@ -14,6 +14,8 @@ from nltk.classify.scikitlearn import SklearnClassifier
 from sklearn.naive_bayes import MultinomialNB, GaussianNB, BernoulliNB
 from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.svm import SVC, LinearSVC, NuSVC
+from nltk.classify import ClassifierI
+from statistics import mode
 
 # Download the required NLTK data
 #nltk.download()
@@ -269,6 +271,26 @@ def corpora():
     for x in range(5):
         print(tok[x])
     return
+# Combine the votes of all of the classifiers, and then classified the text whatever the majority vote was
+# Inherit from ClassifierI class from Nl
+class VoteClassifier(ClassifierI):
+    def __init__(self, *classfiers): #Always run without calling and passes list of classiers through vote classfier
+        self._classfiers = classfiers 
+    def classify(self, features): # synonymous with the NLTK classfiers 
+        votes = []
+        for c in self._classfiers:
+            v = c.classify(features) # for each classfier get vote
+            votes.append(v)
+        return mode(votes) # Most votes
+
+    def confidence(self, features):
+        votes = []
+        for c in self._classfiers:
+            v = c.classify(features)
+            votes.append(v)
+        choice_votes = votes.count(mode(votes)) # counts how many occurances of that most popular vote were in that list
+        conf = choice_votes/len(votes)
+        return conf
 
 def WordNet():
     # WordNet is a part of Copra. It allows to take words and checks for synonyms,
@@ -408,10 +430,10 @@ def textClassification():
     SGDClassifier_classfier.train(training_set)
     print("SGDClassifier accuracy percent:",(nltk.classify.accuracy(SGDClassifier_classfier, testing_set))*100)
    
-    # SVC classfier
-    SVC_classfier = SklearnClassifier(SVC())
-    SVC_classfier.train(training_set)
-    print("SVC classfier accuracy percent:",(nltk.classify.accuracy(SVC_classfier, testing_set))*100)
+    # SVC classfier least accure
+    #SVC_classfier = SklearnClassifier(SVC())
+    #SVC_classfier.train(training_set)
+    #print("SVC classfier accuracy percent:",(nltk.classify.accuracy(SVC_classfier, testing_set))*100)
     
     # LinearSVC classfier
     LinearSVC_classfier = SklearnClassifier(LinearSVC())
@@ -423,7 +445,16 @@ def textClassification():
     NuSVC_classfier.train(training_set)
     print("NuSVC_classfier accuracy percent:",(nltk.classify.accuracy(NuSVC_classfier, testing_set))*100)
 
+    voted_classfier = VoteClassifier(classifier, SGDClassifier_classfier, MNB_classifier, LogisticRegression_classfier, LinearSVC_classfier, NuSVC_classfier, BernoulliNB_classifier)
+    print("voted_classfier accuracy percent:",(nltk.classify.accuracy(voted_classfier, testing_set))*100)
+    print("Classification:", voted_classfier.classify(testing_set[0][0]), "Confidence %", voted_classfier.confidence(testing_set[0][0]))
 
+
+    print("Classification:", voted_classfier.classify(testing_set[1][0]), "Confidence %", voted_classfier.confidence(testing_set[1][0]))
+    print("Classification:", voted_classfier.classify(testing_set[2][0]), "Confidence %", voted_classfier.confidence(testing_set[2][0]))
+    print("Classification:", voted_classfier.classify(testing_set[3][0]), "Confidence %", voted_classfier.confidence(testing_set[3][0]))
+    print("Classification:", voted_classfier.classify(testing_set[4][0]), "Confidence %", voted_classfier.confidence(testing_set[4][0]))
+    print("Classification:", voted_classfier.classify(testing_set[5][0]), "Confidence %", voted_classfier.confidence(testing_set[5][0]))
     return
 # preprocessing()
 # stopWords()
