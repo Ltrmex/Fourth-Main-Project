@@ -348,7 +348,7 @@ def textClassification():
     for fileid in movie_reviews.fileids(category)]
 
     # Shuffle documents
-    random.shuffle(documents)
+    #random.shuffle(documents)
 
     # Output first elemrnt in documents
     #print(documents[1])
@@ -382,10 +382,14 @@ def textClassification():
     
     featuresets = [(find_features(rev), category) for (rev, category) in documents]
     
-    # Declare sets for dataset
+    # Declare sets for dataset with positive data examples
+    training_set = featuresets[:100] # trains
+    testing_set = featuresets[:100]# feed through the feature sets
+
+    # Declare sets for dataset with negative data examples
     training_set = featuresets[:1900] # trains
     testing_set = featuresets[:1900]# feed through the feature sets
-
+    
     # Naive Bayes algorithm it's type of classifier that's works on very independent assuption
     # for each feature
     # posterior it's likehood of somethng positive
@@ -445,16 +449,16 @@ def textClassification():
     NuSVC_classfier.train(training_set)
     print("NuSVC_classfier accuracy percent:",(nltk.classify.accuracy(NuSVC_classfier, testing_set))*100)
 
-    voted_classfier = VoteClassifier(classifier, SGDClassifier_classfier, MNB_classifier, LogisticRegression_classfier, LinearSVC_classfier, NuSVC_classfier, BernoulliNB_classifier)
+    voted_classfier = VoteClassifier(classifier, MNB_classifier, LogisticRegression_classfier, LinearSVC_classfier, NuSVC_classfier, BernoulliNB_classifier)
     print("voted_classfier accuracy percent:",(nltk.classify.accuracy(voted_classfier, testing_set))*100)
     print("Classification:", voted_classfier.classify(testing_set[0][0]), "Confidence %", voted_classfier.confidence(testing_set[0][0]))
 
 
-    print("Classification:", voted_classfier.classify(testing_set[1][0]), "Confidence %", voted_classfier.confidence(testing_set[1][0]))
-    print("Classification:", voted_classfier.classify(testing_set[2][0]), "Confidence %", voted_classfier.confidence(testing_set[2][0]))
-    print("Classification:", voted_classfier.classify(testing_set[3][0]), "Confidence %", voted_classfier.confidence(testing_set[3][0]))
-    print("Classification:", voted_classfier.classify(testing_set[4][0]), "Confidence %", voted_classfier.confidence(testing_set[4][0]))
-    print("Classification:", voted_classfier.classify(testing_set[5][0]), "Confidence %", voted_classfier.confidence(testing_set[5][0]))
+    #print("Classification:", voted_classfier.classify(testing_set[1][0]), "Confidence %", voted_classfier.confidence(testing_set[1][0]))
+    #print("Classification:", voted_classfier.classify(testing_set[2][0]), "Confidence %", voted_classfier.confidence(testing_set[2][0]))
+    #print("Classification:", voted_classfier.classify(testing_set[3][0]), "Confidence %", voted_classfier.confidence(testing_set[3][0]))
+    #print("Classification:", voted_classfier.classify(testing_set[4][0]), "Confidence %", voted_classfier.confidence(testing_set[4][0]))
+    #print("Classification:", voted_classfier.classify(testing_set[5][0]), "Confidence %", voted_classfier.confidence(testing_set[5][0]))
     return
 # preprocessing()
 # stopWords()
