@@ -10,6 +10,10 @@ import pickle
 from nltk.tokenize import sent_tokenize, word_tokenize, PunktSentenceTokenizer
 from nltk.corpus import stopwords, state_union, gutenberg, wordnet, movie_reviews
 from nltk.stem import PorterStemmer, WordNetLemmatizer
+from nltk.classify.scikitlearn import SklearnClassifier
+from sklearn.naive_bayes import MultinomialNB, GaussianNB, BernoulliNB
+from sklearn.linear_model import LogisticRegression, SGDClassifier
+from sklearn.svm import SVC, LinearSVC, NuSVC
 
 # Download the required NLTK data
 #nltk.download()
@@ -369,7 +373,7 @@ def textClassification():
     classifier = pickle.load(classifier_f)
     classifier_f.close()
     # outputs accuracy
-    print("Naive Bayes Algotithm:",(nltk.classify.accuracy(classifier, testing_set))*100)
+    print("Original Naive Bayes Algotithm:",(nltk.classify.accuracy(classifier, testing_set))*100)
     classifier.show_most_informative_features(20) # Shows most popular words on both sides
 
     # Saving traning algorith Part
@@ -378,6 +382,47 @@ def textClassification():
     #save_classifier = open("naivebayes.pickle","wb") #write in bytes
     #pickle.dump(classifier, save_classifier)
     #save_classifier.close()
+
+    # Multinomial Naive Base classfier
+    MNB_classifier = SklearnClassifier(MultinomialNB())
+    MNB_classifier.train(training_set)
+    print("MNB_classifier accuracy percent:",(nltk.classify.accuracy(MNB_classifier, testing_set))*100)
+
+    # Gaussian Naive Base classfier
+    #GaussianNB_classifier = SklearnClassifier(GaussianNB())
+    #GaussianNB_classifier.train(training_set)
+    #print("GaussianNB accuracy percent:",(nltk.classify.accuracy(GaussianNB_classifier, testing_set))*100)
+    
+    # Bernoulli Naive base classfier
+    BernoulliNB_classifier = SklearnClassifier(BernoulliNB())
+    BernoulliNB_classifier.train(training_set)
+    print("BernoulliNB_classifier accuracy percent:",(nltk.classify.accuracy(BernoulliNB_classifier, testing_set))*100)
+
+    # LogisticRegression classfier
+    LogisticRegression_classfier =SklearnClassifier(LogisticRegression())
+    LogisticRegression_classfier.train(training_set)
+    print("LogisticRegression classfier accuracy percent:",(nltk.classify.accuracy(LogisticRegression_classfier, testing_set))*100)
+   
+    # SGDClassifier classfier
+    SGDClassifier_classfier = SklearnClassifier(SGDClassifier())
+    SGDClassifier_classfier.train(training_set)
+    print("SGDClassifier accuracy percent:",(nltk.classify.accuracy(SGDClassifier_classfier, testing_set))*100)
+   
+    # SVC classfier
+    SVC_classfier = SklearnClassifier(SVC())
+    SVC_classfier.train(training_set)
+    print("SVC classfier accuracy percent:",(nltk.classify.accuracy(SVC_classfier, testing_set))*100)
+    
+    # LinearSVC classfier
+    LinearSVC_classfier = SklearnClassifier(LinearSVC())
+    LinearSVC_classfier.train(training_set)
+    print("LinearSVC_classfier accuracy percent:",(nltk.classify.accuracy(LinearSVC_classfier, testing_set))*100)
+    
+    # NuSVC classfier
+    NuSVC_classfier = SklearnClassifier(NuSVC())
+    NuSVC_classfier.train(training_set)
+    print("NuSVC_classfier accuracy percent:",(nltk.classify.accuracy(NuSVC_classfier, testing_set))*100)
+
 
     return
 # preprocessing()
