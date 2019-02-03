@@ -339,8 +339,8 @@ class VoteClassifier(ClassifierI):
 
 def textClassification():
     #Acces a file
-    short_pos = open("positive.txt", "r").read()
-    short_neg = open("negative.txt", "r").read()
+    short_pos = open("/Users/Ltrmex/Desktop/Fourth-Main-Project/Code/Neural Networks/positive.txt", "r").read()
+    short_neg = open("/Users/Ltrmex/Desktop/Fourth-Main-Project/Code/Neural Networks/negative.txt", "r").read()
 
     # declare list of documents
     documents = []
@@ -453,8 +453,14 @@ def textClassification():
     NuSVC_classfier.train(training_set)
     print("NuSVC_classfier accuracy percent:",(nltk.classify.accuracy(NuSVC_classfier, testing_set))*100)
 
-    voted_classfier = VoteClassifier(classifier, MNB_classifier, LogisticRegression_classfier, LinearSVC_classfier, NuSVC_classfier, BernoulliNB_classifier)
-    print("voted_classfier accuracy percent:",(nltk.classify.accuracy(voted_classfier, testing_set))*100)
+    voted_classifier = VoteClassifier(
+                                  NuSVC_classfier,
+                                  LinearSVC_classfier,
+                                  MNB_classifier,
+                                  BernoulliNB_classifier,
+                                  LogisticRegression_classfier)
+
+    print("voted_classifier accuracy percent:", (nltk.classify.accuracy(voted_classifier, testing_set))*100)
     #print("Classification:", voted_classfier.classify(testing_set[0][0]), "Confidence %", voted_classfier.confidence(testing_set[0][0]))
 
 
@@ -464,6 +470,8 @@ def textClassification():
     #print("Classification:", voted_classfier.classify(testing_set[4][0]), "Confidence %", voted_classfier.confidence(testing_set[4][0]))
     #print("Classification:", voted_classfier.classify(testing_set[5][0]), "Confidence %", voted_classfier.confidence(testing_set[5][0]))
     return
+
+
 # preprocessing()
 # stopWords()
 # stemming()
@@ -475,4 +483,5 @@ def textClassification():
 # corpora()
 # WordNet()
 textClassification()
+
 
