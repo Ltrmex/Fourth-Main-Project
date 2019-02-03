@@ -16,6 +16,7 @@ from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.svm import SVC, LinearSVC, NuSVC
 from nltk.classify import ClassifierI
 from statistics import mode
+import sentiment_mod as s
 
 # Download the required NLTK data
 #nltk.download()
@@ -471,7 +472,11 @@ def textClassification():
     #print("Classification:", voted_classfier.classify(testing_set[5][0]), "Confidence %", voted_classfier.confidence(testing_set[5][0]))
     return
 
-
+def sentimenAnalysis():
+    print(s.sentiment("This movie was awesome! The acting was great, plot was wonderful, and there were pythons...so yea!"))
+    print(s.sentiment("This movie was utter junk. There were absolutely 0 pythons. I don't see what the point was at all. Horrible movie, 0/10"))
+    return
+    
 # preprocessing()
 # stopWords()
 # stemming()
@@ -482,6 +487,5 @@ def textClassification():
 # lemmatizing()
 # corpora()
 # WordNet()
-textClassification()
-
-
+# textClassification()
+# sentimenAnalysis()
