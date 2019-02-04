@@ -482,6 +482,38 @@ def sentimenAnalysis():
     print(s.sentiment("This movie was utter junk. There were absolutely 0 pythons. I don't see what the point was at all. Horrible movie, 0/10"))
     return
 
+def tweeterDemo():
+    #consumer key, consumer secret, access token, access secret.
+    ckey="kNlyGXH4RdKlmiNPtLnsBpAPA"
+    csecret="MxYcqgDjueHcRvZV5bzkBQHPR218CkDgBkt90GpZiEIRIbuwOE"
+    atoken="1092197457860222976-xTBpWFgzfXVm6tsiT1wi6xsTpTo2qz"
+    asecret="gdmIAkUHWBFKsOU1ecVyxMMlKMYtBbg7GNTdBTvndl7sT"
+
+    class listener(StreamListener):
+        def on_data(self, data):
+            all_data = json.loads(data)
+            tweet = all_data["text"]
+            sentiment_value, confidence = s.sentiment(tweet)
+            print(tweet, sentiment_value, confidence)
+
+            if confidence*100 >= 80:
+                output = open("twitter-out.txt","a")
+                output.write(sentiment_value)
+                output.write('\n')
+                output.close()
+
+            return True
+
+        def on_error(self, status):
+            print(status)
+
+
+    auth = OAuthHandler(ckey, csecret)
+    auth.set_access_token(atoken, asecret)
+
+    twitterStream = Stream(auth, listener())
+    twitterStream.filter(track=["happy"])
+    return
 # preprocessing()
 # stopWords()
 # stemming()
@@ -494,34 +526,5 @@ def sentimenAnalysis():
 # WordNet()
 # textClassification()
 # sentimenAnalysis()
+# tweeterDemo()
 
-#consumer key, consumer secret, access token, access secret.
-ckey="kNlyGXH4RdKlmiNPtLnsBpAPA"
-csecret="MxYcqgDjueHcRvZV5bzkBQHPR218CkDgBkt90GpZiEIRIbuwOE"
-atoken="1092197457860222976-xTBpWFgzfXVm6tsiT1wi6xsTpTo2qz"
-asecret="gdmIAkUHWBFKsOU1ecVyxMMlKMYtBbg7GNTdBTvndl7sT"
-
-class listener(StreamListener):
-    def on_data(self, data):
-		all_data = json.loads(data)
-		tweet = all_data["text"]
-		sentiment_value, confidence = s.sentiment(tweet)
-		print(tweet, sentiment_value, confidence)
-
-		if confidence*100 >= 80:
-			output = open("twitter-out.txt","a")
-			output.write(sentiment_value)
-			output.write('\n')
-			output.close()
-
-        return True
-
-    def on_error(self, status):
-        print(status)
-
-
-auth = OAuthHandler(ckey, csecret)
-auth.set_access_token(atoken, asecret)
-
-twitterStream = Stream(auth, listener())
-twitterStream.filter(track=["happy"])
