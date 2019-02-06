@@ -1,9 +1,13 @@
 # Imports
-from guizero import App, Text, TextBox, PushButton 
+from guizero import App, Text, TextBox, PushButton, Slider
 
 # Method responsible for changing the value of welcomeMessage
 def displayMyName():
     welcomeMessage.value = myName.value
+    return
+
+def changeTextSize(sliderValue):
+    welcomeMessage.size = sliderValue
     return
 
 # Set app name
@@ -18,6 +22,9 @@ myName = TextBox(app)
 
 # Update text button
 updateText = PushButton(app, command=displayMyName, text="Display my name")
+
+# Slider widget
+textSize = Slider(app, command=changeTextSize, start=10, end=80)
 
 # Display app window
 app.display()   
