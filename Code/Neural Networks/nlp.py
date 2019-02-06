@@ -525,6 +525,8 @@ def tweeterDemo():
 # corpora()
 # WordNet()
 # textClassification()
-# sentimenAnalysis()
+sentimenAnalysis()
 # tweeterDemo()
+
+
 
