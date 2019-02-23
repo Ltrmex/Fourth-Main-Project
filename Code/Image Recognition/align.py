@@ -129,7 +129,7 @@ class AlignDlib:
         # return list(map(lambda p: (p.x, p.y), points.parts()))
         return [(p.x, p.y) for p in points.parts()]
 
-# pylint: disable=dangerous-default-value
+    # pylint: disable=dangerous-default-value
     def align(self, imgDim, rgbImg, bb=None,
             landmarks=None, landmarkIndices=INNER_EYES_AND_BOTTOM_LIP,
             skipMulti=False, scale=1.0):
