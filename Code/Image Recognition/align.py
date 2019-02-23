@@ -1,3 +1,5 @@
+# Reference: https://github.com/cmusatyalab/openface/blob/master/openface/align_dlib.py
+
 import cv2
 import dlib
 import numpy as np
@@ -90,7 +92,7 @@ class AlignDlib:
         except Exception as e:  # pylint: disable=broad-except
             print("Warning: {}".format(e))
             # In rare cases, exceptions are thrown.
-    return []
+        return []
 
     def getLargestFaceBoundingBox(self, rgbImg, skipMulti=False):
         """
@@ -108,7 +110,7 @@ class AlignDlib:
         if (not skipMulti and len(faces) > 0) or len(faces) == 1:
             return max(faces, key=lambda rect: rect.width() * rect.height())
         else:
-    return None
+            return None
 
     def findLandmarks(self, rgbImg, bb):
         """
@@ -125,4 +127,51 @@ class AlignDlib:
 
         points = self.predictor(rgbImg, bb)
         # return list(map(lambda p: (p.x, p.y), points.parts()))
-    return [(p.x, p.y) for p in points.parts()]
+        return [(p.x, p.y) for p in points.parts()]
+
+# pylint: disable=dangerous-default-value
+    def align(self, imgDim, rgbImg, bb=None,
+            landmarks=None, landmarkIndices=INNER_EYES_AND_BOTTOM_LIP,
+            skipMulti=False, scale=1.0):
+        r"""align(imgDim, rgbImg, bb=None, landmarks=None, landmarkIndices=INNER_EYES_AND_BOTTOM_LIP)
+        Transform and align a face in an image.
+        :param imgDim: The edge length in pixels of the square the image is resized to.
+        :type imgDim: int
+        :param rgbImg: RGB image to process. Shape: (height, width, 3)
+        :type rgbImg: numpy.ndarray
+        :param bb: Bounding box around the face to align. \
+                   Defaults to the largest face.
+        :type bb: dlib.rectangle
+        :param landmarks: Detected landmark locations. \
+                          Landmarks found on `bb` if not provided.
+        :type landmarks: list of (x,y) tuples
+        :param landmarkIndices: The indices to transform to.
+        :type landmarkIndices: list of ints
+        :param skipMulti: Skip image if more than one face detected.
+        :type skipMulti: bool
+        :param scale: Scale image before cropping to the size given by imgDim.
+        :type scale: float
+        :return: The aligned RGB image. Shape: (imgDim, imgDim, 3)
+        :rtype: numpy.ndarray
+        """
+        assert imgDim is not None
+        assert rgbImg is not None
+        assert landmarkIndices is not None
+
+        if bb is None:
+            bb = self.getLargestFaceBoundingBox(rgbImg, skipMulti)
+            if bb is None:
+                return
+
+        if landmarks is None:
+            landmarks = self.findLandmarks(rgbImg, bb)
+
+        npLandmarks = np.float32(landmarks)
+        npLandmarkIndices = np.array(landmarkIndices)
+
+        # pylint: disable=maybe-no-member
+        H = cv2.getAffineTransform(npLandmarks[npLandmarkIndices],
+                                   imgDim * MINMAX_TEMPLATE[npLandmarkIndices] * scale + imgDim * (1 - scale) / 2)
+        thumbnail = cv2.warpAffine(rgbImg, H, (imgDim, imgDim))
+
+        return thumbnail
