@@ -62,3 +62,32 @@ class AlignDlib:
 
     #: Landmark indices corresponding to the outer eyes and nose.
     OUTER_EYES_AND_NOSE = [36, 45, 33]
+
+    def __init__(self, facePredictor):
+    """
+    Instantiate an 'AlignDlib' object.
+    :param facePredictor: The path to dlib's
+    :type facePredictor: str
+    """
+    assert facePredictor is not None
+
+    # pylint: disable=no-member
+    self.detector = dlib.get_frontal_face_detector()
+    self.predictor = dlib.shape_predictor(facePredictor)
+
+    def getAllFaceBoundingBoxes(self, rgbImg):
+    """
+    Find all face bounding boxes in an image.
+    :param rgbImg: RGB image to process. Shape: (height, width, 3)
+    :type rgbImg: numpy.ndarray
+    :return: All face bounding boxes in an image.
+    :rtype: dlib.rectangles
+    """
+    assert rgbImg is not None
+
+    try:
+        return self.detector(rgbImg, 1)
+    except Exception as e:  # pylint: disable=broad-except
+        print("Warning: {}".format(e))
+        # In rare cases, exceptions are thrown.
+    return []
