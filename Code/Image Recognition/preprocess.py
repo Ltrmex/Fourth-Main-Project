@@ -33,3 +33,16 @@ def main(inputDir, outputDir, cropDim):
     pool.join()
     logger.info('Completed in {} seconds'.format(time.time() - startTime))
 
+def preprocessImage(inputPath, outputPath, cropDim):
+    """
+    Detect face, align and crop :param inputPath. Write output to :param outputPath
+    :param inputPath: Path to input image
+    :param outputPath: Path to write processed image
+    :param cropDim: dimensions to crop image to
+    """
+    image = _process_image(inputPath, cropDim)
+    if image is not None:
+        logger.debug('Writing processed file: {}'.format(outputPath))
+        cv2.imwrite(outputPath, image)
+    else:
+        logger.warning("Skipping filename: {}".format(inputPath))
