@@ -46,3 +46,19 @@ INV_TEMPLATE = np.float32([
 
 TPL_MIN, TPL_MAX = np.min(TEMPLATE, axis=0), np.max(TEMPLATE, axis=0)
 MINMAX_TEMPLATE = (TEMPLATE - TPL_MIN) / (TPL_MAX - TPL_MIN)
+
+class AlignDlib:
+    """
+    Use `dlib's landmark estimation <http://blog.dlib.net/2014/08/real-time-face-pose-estimation.html>`_ to align faces.
+    The alignment preprocess faces for input into a neural network.
+    Faces are resized to the same size (such as 96x96) and transformed
+    to make landmarks (such as the eyes and nose) appear at the same
+    location on every image.
+    Normalized landmarks:
+    .. image:: ../images/dlib-landmark-mean.png
+    """
+    #: Landmark indices corresponding to the inner eyes and bottom lip.
+    INNER_EYES_AND_BOTTOM_LIP = [39, 42, 57]
+
+    #: Landmark indices corresponding to the outer eyes and nose.
+    OUTER_EYES_AND_NOSE = [36, 45, 33]
