@@ -109,3 +109,20 @@ class AlignDlib:
             return max(faces, key=lambda rect: rect.width() * rect.height())
         else:
     return None
+
+    def findLandmarks(self, rgbImg, bb):
+        """
+        Find the landmarks of a face.
+        :param rgbImg: RGB image to process. Shape: (height, width, 3)
+        :type rgbImg: numpy.ndarray
+        :param bb: Bounding box around the face to find landmarks for.
+        :type bb: dlib.rectangle
+        :return: Detected landmark locations.
+        :rtype: list of (x,y) tuples
+        """
+        assert rgbImg is not None
+        assert bb is not None
+
+        points = self.predictor(rgbImg, bb)
+        # return list(map(lambda p: (p.x, p.y), points.parts()))
+    return [(p.x, p.y) for p in points.parts()]
