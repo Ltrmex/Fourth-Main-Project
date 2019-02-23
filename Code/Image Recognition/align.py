@@ -64,30 +64,48 @@ class AlignDlib:
     OUTER_EYES_AND_NOSE = [36, 45, 33]
 
     def __init__(self, facePredictor):
-    """
-    Instantiate an 'AlignDlib' object.
-    :param facePredictor: The path to dlib's
-    :type facePredictor: str
-    """
-    assert facePredictor is not None
+        """
+        Instantiate an 'AlignDlib' object.
+        :param facePredictor: The path to dlib's
+        :type facePredictor: str
+        """
+        assert facePredictor is not None
 
-    # pylint: disable=no-member
-    self.detector = dlib.get_frontal_face_detector()
-    self.predictor = dlib.shape_predictor(facePredictor)
+        # pylint: disable=no-member
+        self.detector = dlib.get_frontal_face_detector()
+        self.predictor = dlib.shape_predictor(facePredictor)
 
     def getAllFaceBoundingBoxes(self, rgbImg):
-    """
-    Find all face bounding boxes in an image.
-    :param rgbImg: RGB image to process. Shape: (height, width, 3)
-    :type rgbImg: numpy.ndarray
-    :return: All face bounding boxes in an image.
-    :rtype: dlib.rectangles
-    """
-    assert rgbImg is not None
+        """
+        Find all face bounding boxes in an image.
+        :param rgbImg: RGB image to process. Shape: (height, width, 3)
+        :type rgbImg: numpy.ndarray
+        :return: All face bounding boxes in an image.
+        :rtype: dlib.rectangles
+        """
+        assert rgbImg is not None
 
-    try:
-        return self.detector(rgbImg, 1)
-    except Exception as e:  # pylint: disable=broad-except
-        print("Warning: {}".format(e))
-        # In rare cases, exceptions are thrown.
+        try:
+            return self.detector(rgbImg, 1)
+        except Exception as e:  # pylint: disable=broad-except
+            print("Warning: {}".format(e))
+            # In rare cases, exceptions are thrown.
     return []
+
+    def getLargestFaceBoundingBox(self, rgbImg, skipMulti=False):
+        """
+        Find the largest face bounding box in an image.
+        :param rgbImg: RGB image to process. Shape: (height, width, 3)
+        :type rgbImg: numpy.ndarray
+        :param skipMulti: Skip image if more than one face detected.
+        :type skipMulti: bool
+        :return: The largest face bounding box in an image, or None.
+        :rtype: dlib.rectangle
+        """
+        assert rgbImg is not None
+
+        faces = self.getAllFaceBoundingBoxes(rgbImg)
+        if (not skipMulti and len(faces) > 0) or len(faces) == 1:
+            return max(faces, key=lambda rect: rect.width() * rect.height())
+        else:
+    return None
