@@ -46,3 +46,16 @@ def preprocessImage(inputPath, outputPath, cropDim):
         cv2.imwrite(outputPath, image)
     else:
         logger.warning("Skipping filename: {}".format(inputPath))
+
+def _processImage(filename, cropDim):
+    image = None
+    alignedImage = None
+
+    image = _bufferImage(filename)
+
+    if image is not None:
+        alignedImage = _alignImage(image, cropDim)
+    else:
+        raise IOError('Error buffering image: {}'.format(filename))
+
+    return alignedImage
