@@ -4,7 +4,7 @@ import json
 from datetime import datetime
 
 # Time frame for a training file
-timeframe = '2011-08'
+timeframe = '2014-03'
 sql_transaction = []
 
 # Connection with sqlite3
@@ -113,7 +113,7 @@ if __name__ == '__main__':
     paired_rows = 0
 
     # Opens a file
-    with open("C:/Users/Kamilka/Year4/Traning_Data/{}/RC_{}".format(timeframe.split('-')[0], timeframe), buffering = 1000) as f:
+    with open("C:/Users/Kamilka/Year4/Traning_Data/{}/RC_{}".format(timeframe.split('-')[0], timeframe, ), buffering = 1000) as f:
         # Iterate through f
         for row in f:
             # Checks if data is printing
