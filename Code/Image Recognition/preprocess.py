@@ -78,7 +78,7 @@ if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
     parser = argparse.ArgumentParser(add_help=True)
     parser.add_argument('--inputDir', type=str, action='store', default='/data', dest='inputDir')
-    parser.add_argument('--outputDir', type=str, action='store', default='output', dest='outputDir')
+    parser.add_argument('--outputDir', type=str, action='store', default='/output/intermediate', dest='outputDir')
     parser.add_argument('--cropDim', type=int, action='store', default=180, dest='cropDim',
                         help='Size to crop images to')
     args = parser.parse_args()
