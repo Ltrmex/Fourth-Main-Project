@@ -515,7 +515,7 @@ def tweeterDemo():
     twitterStream.filter(track=["happy"])
     return
 # preprocessing()
-# stopWords()
+stopWords()
 # stemming()
 # speechTagging()
 # chunking()
@@ -525,7 +525,7 @@ def tweeterDemo():
 # corpora()
 # WordNet()
 # textClassification()
-sentimenAnalysis()
+# sentimenAnalysis()
 # tweeterDemo()
 
 
