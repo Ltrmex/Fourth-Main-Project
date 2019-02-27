@@ -101,7 +101,18 @@ def response(sentence, userID='123', show_details=False):
                         (userID in context and 'context_filter' in i and i['context_filter'] == context[userID]):
                         if show_details: print ('tag:', i['tag'])
                         # a random response from the intent
-                        return print(random.choice(i['responses']))
+                        return random.choice(i['responses'])
 
             results.pop(0)
+    
+#print(classify('is your shop open today?'))
+#print(response('is your shop open today?'))
+#print(response("thanks, your great"))
+
+input_test = ""
+
+while input_test != "exit":
+    input_test = input("You: ")
+    print("Chatbot: ",response(input_test))
+
             
