@@ -1,3 +1,8 @@
+# References:
+# https://media.readthedocs.org/pdf/pyttsx3/latest/pyttsx3.pdf
+# https://chatbotsmagazine.com/contextual-chat-bots-with-tensorflow-4391749d0077, 
+# https://sourcedexter.com/tensorflow-text-classification-python/
+
 # Imports for NLP
 import nltk
 from nltk.stem.lancaster import LancasterStemmer
