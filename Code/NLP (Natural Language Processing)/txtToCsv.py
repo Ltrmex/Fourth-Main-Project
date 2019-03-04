@@ -1,7 +1,32 @@
-import csv
+import csv, re
 from nltk import sent_tokenize
+
 def corpusDialogueData():
-    
+    filename = 'C:/Users/Ltrmex/Desktop/Fourth-Main-Project/dialogues/1.txt'
+    file = open(filename, encoding="utf8")
+    text = file.read()
+    file.close()
+
+    # define lists
+    responses = []
+
+    sentences = sent_tokenize(text)
+    tag = re.findall('([A-Z][a-z]+)', sentences[0])[1]
+    question = sentences[0]
+
+    i = 0
+    while i < len(sentences):
+        if i != 0:
+            responses.append(sentences[i])
+        i += 1
+
+    with open('output.csv', 'w') as f:
+        w = csv.writer(f, delimiter=',')
+        w.writerow(['Tag', 'Question', 'Responses'])
+        w.writerow([tag, question, responses,])
+           
+        
+    f.close()
 
 def wikipediaData():
     # load text
@@ -37,8 +62,5 @@ def wikipediaData():
         
     f.close()
 
-    print "CSV saved!"
-
-
 # wikipediaData()
-# corpusDialogueData()
+corpusDialogueData()
