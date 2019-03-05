@@ -27,7 +27,7 @@ train_x = data['train_x']
 train_y = data['train_y']
 
 # import our chat-bot intents file
-with open('intents.json') as json_data:
+with open('C:/Users/Ltrmex/Desktop/Fourth-Main-Project/parsed.json') as json_data:
     intents = json.load(json_data)
 
 # Build neural network
@@ -137,9 +137,10 @@ while input_test != "exit":
     # Waits until next input.
     engine.runAndWait()
     # Output chatbot random reponse for given user input.
-    print("Chatbot: ",(response(input_test)))
+    result = response(input_test)
+    print("Chatbot: ", result)
     # Say chatbot output using pyttsx3 library.
-    engine.say(response(input_test))
+    engine.say(result)
     # Waits until next input.
     engine.runAndWait()
     
