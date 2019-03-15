@@ -7,7 +7,7 @@ def corpusDialogueData():
     onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
     
     j = 1
-    while j < len(onlyfiles):
+    while j <= 250:
         # 11, 212, 22, 253, 274
         filename = 'C:/Users/Ltrmex/Desktop/Fourth-Main-Project/dialogues/' + onlyfiles[j]
         file = open(filename, encoding="utf8")
@@ -18,8 +18,15 @@ def corpusDialogueData():
         responses = []
 
         sentences = sent_tokenize(text)
-        tag = 'horror'
-        #tag = re.findall('([A-Z][a-z]+)', sentences[0])[0]
+        
+        if j == 13 or j == 127 or j == 135 or j == 172 or j == 195 or j == 207 or j == 214 or j == 232:
+            tag = 'horror'
+        else:
+            try:
+                 tag = re.findall('([A-Z][a-z]+)', sentences[0])[1]
+            except:
+                tag = re.findall('([A-Z][a-z]+)', sentences[0])[0]
+            
         question = sentences[0]
 
         i = 0

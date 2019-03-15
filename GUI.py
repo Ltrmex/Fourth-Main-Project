@@ -88,6 +88,26 @@ class PageTwo(Frame):
         Frame.__init__(self, parent)
         Tk.configure(self, bg="black")
         Label(self,text="Our Code", bg="blue", fg="white", font=("Helvetica", 16)).pack(fill=X)
+		
+        messages = Text(self)
+        messages.pack()
+
+        input_user = StringVar()
+        input_field = Entry(self, text=input_user)
+        input_field.pack(side=BOTTOM, fill=X)
+
+        def Enter_pressed(event):
+            input_get = input_field.get()
+            print(input_get)
+            messages.insert(INSERT, '%s\n' % input_get)
+            # label = Label(self, text=input_get)
+            input_user.set('')
+            # label.pack()
+            return "break"
+
+        frame = Frame(self)  # , width=300, height=300)
+        input_field.bind("<Return>", Enter_pressed)
+        frame.pack()
 
         photo = PhotoImage(file="C:/Users/Ltrmex/Desktop/Fourth-Main-Project/Code/GUI/Images/Python.png")
         Label(self, image=photo).pack()
@@ -99,7 +119,6 @@ class PageTwo(Frame):
         button2 = Button(self, text="Google AIY", bg="red", fg="white",
                             command=lambda: controller.show_frame(PageOne))
         button2.pack(padx=20,pady=20)
-        
 
 
 app = Pages()
