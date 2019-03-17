@@ -19,14 +19,22 @@ def corpusDialogueData():
 
         sentences = sent_tokenize(text)
         
-        if j == 13 or j == 127 or j == 135 or j == 172 or j == 195 or j == 207 or j == 214 or j == 232:
-            tag = 'horror'
+        """if j == 13 or j == 127 or j == 135 or j == 172 or j == 195 or j == 207 or j == 214 or j == 232:
+            tag = 'sport'
         else:
             try:
                  tag = re.findall('([A-Z][a-z]+)', sentences[0])[1]
             except:
-                tag = re.findall('([A-Z][a-z]+)', sentences[0])[0]
+                tag = re.findall('([A-Z][a-z]+)', sentences[0])[0]"""
             
+        try:
+            tag = re.findall('([A-Z][a-z]+)', sentences[0])[1]
+        except:
+            try:
+                tag = re.findall('([A-Z][a-z]+)', sentences[0])[0]
+            except:
+                tag = 'music'
+
         question = sentences[0]
 
         i = 0

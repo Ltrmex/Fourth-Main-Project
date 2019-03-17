@@ -125,7 +125,7 @@ def parse_args():
             help="""Exclude one or more topics, e.g.:
             --exclude-topic transition_music_movies --exclude-topic music""")
     parser.add_argument("--include-only", action='append',
-            default=["horror"],
+            default=["action"],
             help="""If set will only include one or more given topics, e.g.:
             --include-only music --include-only nfl_football""")
     parser.add_argument("--output-naming", type=str, default="integer",
