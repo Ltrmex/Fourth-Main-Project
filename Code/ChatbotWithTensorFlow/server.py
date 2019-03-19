@@ -2,7 +2,7 @@
 """Server for multithreaded (asynchronous) chat application."""
 from socket import AF_INET, socket, SOCK_STREAM
 from threading import Thread
-
+from chat_response import userInput
 
 def accept_incoming_connections():
     """Sets up handling for incoming clients."""
@@ -28,6 +28,10 @@ def handle_client(client):  # Takes client socket as argument.
         msg = client.recv(BUFSIZ)
         if msg != bytes("{quit}", "utf8"):
             broadcast(msg, name+": ")
+            decoded = msg.decode("utf-8")
+            result = userInput(decoded)
+            print(decoded, result)
+            broadcast(result.encode('utf8'), "Chatbot: ")
         else:
             client.send(bytes("{quit}", "utf8"))
             client.close()
@@ -47,7 +51,7 @@ clients = {}
 addresses = {}
 
 HOST = ''
-PORT = 55555
+PORT = 3000
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
 

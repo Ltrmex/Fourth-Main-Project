@@ -13,7 +13,6 @@ import numpy as np
 import tflearn
 import tensorflow as tf
 import random
-import pyttsx3
 
 # Other imports
 import pickle
@@ -115,36 +114,8 @@ def response(sentence, userID='123', show_details=False):
 #print(response('is your shop open today?'))
 #print(response("thanks, your great"))
 
-input_test = ""
-
-while input_test != "exit":
-    # Pytsx is a cross-platform text-to-speech wrapper.
-    engine = pyttsx3.init()
-    # Imports id for female voice
-    en_voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"
-    # Sets the type of voice.
-    engine.setProperty('voice', en_voice_id)
-    # Sets the speech rate
-    rate = engine.getProperty('rate')
-    engine.setProperty('rate', rate-5)
-    # Sets the speech volume
-    volume = engine.getProperty('volume')
-    engine.setProperty('volume', volume+0.25)
-    # User input text.
-    input_test = input("You: ")
-    # Say user input using pyttsx3 library.
-    engine.say(input_test)
-    # Waits until next input.
-    engine.runAndWait()
-    # Output chatbot random reponse for given user input.
+def userInput(input_test):
+    print(input_test)
     result = response(input_test)
-    print("Chatbot: ", result)
-    # Say chatbot output using pyttsx3 library.
-    engine.say(result)
-    # Waits until next input.
-    engine.runAndWait()
-    
-    
-    
-
-            
+    print(result)
+    return result

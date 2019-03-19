@@ -3,7 +3,20 @@
 from socket import AF_INET, socket, SOCK_STREAM
 from threading import Thread
 import tkinter
+import pyttsx3
 
+# Pytsx is a cross-platform text-to-speech wrapper.
+engine = pyttsx3.init()
+# Imports id for female voice
+en_voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"
+# Sets the type of voice.
+engine.setProperty('voice', en_voice_id)
+# Sets the speech rate
+rate = engine.getProperty('rate')
+engine.setProperty('rate', rate-5)
+# Sets the speech volume
+volume = engine.getProperty('volume')
+engine.setProperty('volume', volume+0.25)
 
 def receive():
     """Handles receiving of messages."""
@@ -11,6 +24,8 @@ def receive():
         try:
             msg = client_socket.recv(BUFSIZ).decode("utf8")
             msg_list.insert(tkinter.END, msg)
+            # Say user input using pyttsx3 library.
+            engine.say(msg)
         except OSError:  # Possibly client has left the chat.
             break
 
@@ -20,6 +35,12 @@ def send(event=None):  # event is passed by binders.
     msg = my_msg.get()
     my_msg.set("")  # Clears input field.
     client_socket.send(bytes(msg, "utf8"))
+
+    # Say user input using pyttsx3 library.
+    engine.say(msg)
+    # Waits until next input.
+    engine.runAndWait()
+
     if msg == "{quit}":
         client_socket.close()
         top.quit()

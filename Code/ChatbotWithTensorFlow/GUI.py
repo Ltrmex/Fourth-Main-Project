@@ -1,5 +1,5 @@
 from tkinter import *
-
+from chat_response import *
 LARGE_FONT= ("Verdana", 12)
 
 class Pages(Tk):
@@ -99,7 +99,7 @@ class PageTwo(Frame):
         def Enter_pressed(event):
             input_get = input_field.get()
             print(input_get)
-            messages.insert(INSERT, '%s\n' % input_get)
+            messages.insert(INSERT, 'You: %s\nChatbot: %s\n' % input_get, userInput(input_get))
             # label = Label(self, text=input_get)
             input_user.set('')
             # label.pack()
