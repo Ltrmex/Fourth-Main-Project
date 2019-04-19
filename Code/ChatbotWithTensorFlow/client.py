@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+# Reference: https://www.youtube.com/watch?v=WrtebUkUssc
 """Script for Tkinter GUI chat client."""
 from socket import AF_INET, socket, SOCK_STREAM
 from threading import Thread
@@ -52,14 +52,16 @@ def on_closing(event=None):
     send()
 
 top = tkinter.Tk()
-top.title("Chatter")
+top.title("Fourth Year Main Assignment")
+top.configure(bg="black")
+tkinter.Label(top,text="Google AIY v/s Our Code", bg="blue", fg="white", font=("Helvetica", 16)).pack()
 
 messages_frame = tkinter.Frame(top)
 my_msg = tkinter.StringVar()  # For the messages to be sent.
 my_msg.set("Type your messages here.")
 scrollbar = tkinter.Scrollbar(messages_frame)  # To navigate through past messages.
 # Following will contain the messages.
-msg_list = tkinter.Listbox(messages_frame, height=15, width=50, yscrollcommand=scrollbar.set)
+msg_list = tkinter.Listbox(messages_frame, height=15, width=150, yscrollcommand=scrollbar.set)
 scrollbar.pack(side=tkinter.RIGHT, fill=tkinter.Y)
 msg_list.pack(side=tkinter.LEFT, fill=tkinter.BOTH)
 msg_list.pack()
@@ -77,7 +79,7 @@ top.protocol("WM_DELETE_WINDOW", on_closing)
 HOST = input('Enter host: ')
 PORT = input('Enter port: ')
 if not PORT:
-    PORT = 33000
+    PORT = 3000
 else:
     PORT = int(PORT)
 

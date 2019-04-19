@@ -1,3 +1,5 @@
+# Reference: https://github.com/jfainberg/self_dialogue_corpus
+
 from __future__ import absolute_import, division, print_function
 import argparse, logging, csv, os, sys
 import random, string

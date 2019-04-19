@@ -26,7 +26,7 @@ train_x = data['train_x']
 train_y = data['train_y']
 
 # import our chat-bot intents file
-with open('C:/Users/Ltrmex/Desktop/Fourth-Main-Project/Code/ChatbotWithTensorFlow/intents.json') as json_data:
+with open('C:/Users/Ltrmex/Desktop/Projects/Fourth-Main-Project/Code/ChatbotWithTensorFlow/intents.json') as json_data:
     intents = json.load(json_data)
 
 # Build neural network

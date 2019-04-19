@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+# Reference: https://www.youtube.com/watch?v=WrtebUkUssc
 """Server for multithreaded (asynchronous) chat application."""
 from socket import AF_INET, socket, SOCK_STREAM
 from threading import Thread
