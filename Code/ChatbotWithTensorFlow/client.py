@@ -57,7 +57,7 @@ def on_closing(event=None):
 top = tkinter.Tk()
 top.title("Fourth Year Main Assignment")
 top.configure(bg="black")
-tkinter.Label(top,text="Google AIY v/s Our Code", bg="blue", fg="white", font=("Helvetica", 16)).pack()
+tkinter.Label(top,text="Chatbot", bg="blue", fg="white", font=("Helvetica", 16)).pack()
 
 messages_frame = tkinter.Frame(top)
 my_msg = tkinter.StringVar()  # For the messages to be sent.
