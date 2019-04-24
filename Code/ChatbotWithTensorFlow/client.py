@@ -13,7 +13,7 @@ en_voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS
 engine.setProperty('voice', en_voice_id)
 # Sets the speech rate
 rate = engine.getProperty('rate')
-engine.setProperty('rate', rate-5)
+engine.setProperty('rate', rate-30)
 # Sets the speech volume
 volume = engine.getProperty('volume')
 engine.setProperty('volume', volume+0.25)
@@ -26,18 +26,21 @@ def receive():
             msg_list.insert(tkinter.END, msg)
             # Say user input using pyttsx3 library.
             engine.say(msg)
+            engine.startLoop()
         except OSError:  # Possibly client has left the chat.
             break
 
 
 def send(event=None):  # event is passed by binders.
     """Handles sending of messages."""
-    msg = my_msg.get()
+    msg = my_msg.get()+"     "
     my_msg.set("")  # Clears input field.
     client_socket.send(bytes(msg, "utf8"))
 
+    #
     # Say user input using pyttsx3 library.
     engine.say(msg)
+    engine.endLoop()
     # Waits until next input.
     engine.runAndWait()
 
@@ -58,7 +61,7 @@ tkinter.Label(top,text="Google AIY v/s Our Code", bg="blue", fg="white", font=("
 
 messages_frame = tkinter.Frame(top)
 my_msg = tkinter.StringVar()  # For the messages to be sent.
-my_msg.set("Type your messages here.")
+my_msg.set("Tom")
 scrollbar = tkinter.Scrollbar(messages_frame)  # To navigate through past messages.
 # Following will contain the messages.
 msg_list = tkinter.Listbox(messages_frame, height=15, width=150, yscrollcommand=scrollbar.set)
