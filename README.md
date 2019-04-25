@@ -7,6 +7,7 @@
 <br/>
 <p>With that in mind we have decided that the best option for us would be to start from the beginning and develop our own chatbot from scratch. The chatbot we came up with, is using <strong>tensorflow</strong> to train data on a given model classification and then build upon that to handle responses once given input from the user. Further we added <strong>client-server</strong> side so that all the necessary response data could be stored on the <strong>server</strong> side, while <strong>client</strong> took care of interaction between user and the chatbot through the use of GUI (Graphical User Interface) which was coded up using <strong>TkInter</strong></p>
 
+### Project Structure
 Simply put the way our project works is as follows:
 * Data extraction:
   * This mainly happens in 'get_data.py' where depending on input it generates a set of exchanges of conversations between two people on a given topic from corpus data.
@@ -29,10 +30,27 @@ Simply put the way our project works is as follows:
   * Client sends requests with a given message over the socket connection, and it receives back a response from a server which is then displayed in the GUI.
   * Logic behind the client and it's GUI can be seen in **client.py** file.
   
-### Project Structure
+ **PHOTO OF STRUCTURE HERE**
+  
 ### Required to Run
+
+* **Make sure Python programming language is installed, download from here:** [Python Anaconda](https://www.anaconda.com/distribution/)
+* **Run the following command:** `pip install -r requirements.txt`
+
 ### How to Run
+
+* **Clone repository from command prompt**
+  * `git clone https://github.com/Ltrmex/Fourth-Main-Project`
+* **Change directory**
+  * `cd Fourth-Main-Project/Code/ChatbotWithTensorFlow`
+* **Run Server**
+  * `python server.py`
+* **Run Client**
+  * `python client.py`
+
 ### Example Output
+**PHOTOS HERE**
+
 
 <h2 align="center">Background on Technologies Researched</h2>
 
