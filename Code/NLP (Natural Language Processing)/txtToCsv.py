@@ -3,17 +3,19 @@ from nltk import sent_tokenize
 from os import listdir
 from os.path import isfile, join
 def corpusDialogueData():
-    mypath='C:/Users/Ltrmex/Desktop/Fourth-Main-Project/dialogues/'
+    mypath='dialogues/'
     onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
     
     j = 1
     while j <= 250:
         # 11, 212, 22, 253, 274
-        filename = 'C:/Users/Ltrmex/Desktop/Fourth-Main-Project/dialogues/' + onlyfiles[j]
+        filename = 'dialogues/' + onlyfiles[j]
         file = open(filename, encoding="utf8")
         text = file.read()
         file.close()
-
+		
+        print("File " + filename + " being processed")
+        
         # define lists
         responses = []
 

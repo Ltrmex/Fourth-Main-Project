@@ -119,7 +119,7 @@ def parse_args():
             self-dialogue corpus.""",
             epilog="Example usage: python get_data.py")
     parser.add_argument("--inDir", 
-            help="Source data directory.",default="C:/Users/Ltrmex/Desktop/Fourth-Main-Project/Code/NLP (Natural Language Processing)/corpus")
+            help="Source data directory.",default="corpus")
     parser.add_argument("--outDir",
             help="Where to store output data directories (train, dev, test).",default="dialogues")
     parser.add_argument("--exclude-topic", action='append',

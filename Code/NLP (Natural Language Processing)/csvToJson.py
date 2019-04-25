@@ -1,8 +1,8 @@
 import csv
 import json
 
-csvfile = open('C:/Users/Ltrmex/Desktop/Fourth-Main-Project/output.csv', 'r')
-jsonfile = open('C:/Users/Ltrmex/Desktop/Fourth-Main-Project/parsed.json', 'w')
+csvfile = open('output.csv', 'r')
+jsonfile = open('parsed.json', 'w')
 
 fieldnames = ("tag","patterns","responses")
 reader = csv.DictReader( csvfile, fieldnames)
@@ -13,7 +13,7 @@ for row in reader:
     counter += 1
 
 csvfile.close()
-csvfile = open('C:/Users/Ltrmex/Desktop/Fourth-Main-Project/output.csv', 'r')
+csvfile = open('output.csv', 'r')
 reader = csv.DictReader( csvfile, fieldnames)
 
 rowCounter = 0
