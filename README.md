@@ -63,8 +63,16 @@ Simply put the way our project works is as follows:
 <p>Throughout our project we have researched and tested how NLP functions through coding and reading up online resources. We felt like this was huge step in completion of our project as Chatbot should react only to certain words in the sentence, and come up with reasonable answer. There is a set of examples (Code/NLP (Natural Language Processing)) of how natural processing works. That set of examples was completed through the use of Natural Language Toolkit. The Natural Language Toolkit, or more commonly NLTK, is a suite of libraries and programs for symbolic and statistical natural language processing (NLP) for English written in the Python programming language. </p>
 
 ### TensorFlow
+<p>TensorFlow is a free and open-source software library for dataflow and differentiable programming across a range of tasks. It is a symbolic math library, and is also used for machine learning applications such as neural networks.</p>
+<br/>
+<p>TensorFlow is an end-to-end open source platform for machine learning. It has a comprehensive, flexible ecosystem of tools, libraries and community resources that lets researchers push the state-of-the-art in ML and developers easily build and deploy ML powered applications.</p>
+<br/>
+<p>In our project we have used TensorFlow to create and train our model (<strong>chat_model.py</strong>). Given <strong>intents.json</strong> file where the data set is stored. TensorFlow takes train and test lists, model and neural network to train and test our data. Which then is used in <strong>chat_response.py</strong></p>
 
 ### Neural Networks
+<p>Artificial neural networks (ANN) or connectionist systems are computing systems vaguely inspired by the biological neural networks that constitute animal brains. The neural network itself is not an algorithm, but rather a framework for many different machine learning algorithms to work together and process complex data inputs. Such systems "learn" to perform tasks by considering examples, generally without being programmed with any task-specific rules.</p>
+<br/>
+<p>For example, after our chatbot model has been trained it will answer to any relating topic it was trained on, even if the question is not fully parsed, e.g. if user were to input 'What did you think of The Babadook?' it would come up with one of the responses it was trained on, the same would happen if one would simply input 'Babadook'. Even though the word 'Babadook' is not defined on it's own in the data set by using and training the neural network it would still make the connection to the given word.</p>
 
 <h2 align="center">References</h2>
 
