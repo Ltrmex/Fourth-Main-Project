@@ -1,11 +1,11 @@
-# A Natural Language Processing Framework for Training a Neural Network Chatbot
+<h1 align="center">A Natural Language Processing Framework for Training a Neural Network Chatbot</h1> 
 
 <h2 align="center">About Project</h2>
 
 ### Project Explanation
 <p>The general context behind our project was to develop chatbot which could be trained on a given data set. Our first approach was to use <strong>Google AIY Kit</strong> and modify it to our needs, however while setting it up and experimenting with it we found out we could not achieve that. There were predefined programs ready for our use, which would mean it would not require much coding from us. Another issue with that approach were the dependencies and documentation that were not reliable.</p>
 <br/>
-<p>With that in mind we have decided that the best option for us would be to start from the beginning and develop our own chatbot from scratch. The chatbot we came up with, is using <strong>tensorflow</strong> to train data on a given model classification and then build upon that to handle responses once given input from the user. Further we added <strong>client-server</strong> side so that all the necessary response data could be stored on the <strong>server</strong> side, while <strong>client</strong> took care of interaction between user and the chatbot through the use of GUI (Graphical User Interface) which was coded up using <strong>TkInter</strong></p>
+<p>With that in mind we have decided that the best option for us would be to start from the beginning and develop our own chatbot from scratch. The chatbot we came up with, is using <strong>tensorflow</strong> to train data on a given model classification and then build upon that to handle responses once given input from the user. Further we added <strong>client-server</strong> side so that all the necessary response data could be stored on the <strong>server</strong> side, while <strong>client</strong> took care of interaction between user and the chatbot through the use of GUI (Graphical User Interface) which was coded up using <strong>TkInter.</strong></p>
 
 ### Project Structure
 Simply put the way our project works is as follows:
@@ -55,7 +55,15 @@ Simply put the way our project works is as follows:
 <h2 align="center">Background on Technologies Researched</h2>
 
 ### Natural Language Processing
+
+<p>Natural language processing (NLP) is a subfield of computer science, information engineering, and artificial intelligence concerned with the interactions between computers and human (natural) languages, in particular how to program computers to process and analyze large amounts of natural language data.</p>
+<br/>
+<p>Challenges in natural language processing frequently involve speech recognition, natural language understanding, and natural language generation.</p>
+<br/>
+<p>Throughout our project we have researched and tested how NLP functions through coding and reading up online resources. We felt like this was huge step in completion of our project as Chatbot should react only to certain words in the sentence, and come up with reasonable answer. There is a set of examples (Code/NLP (Natural Language Processing)) of how natural processing works. That set of examples was completed through the use of Natural Language Toolkit. The Natural Language Toolkit, or more commonly NLTK, is a suite of libraries and programs for symbolic and statistical natural language processing (NLP) for English written in the Python programming language. </p>
+
 ### TensorFlow
+
 ### Neural Networks
 
 <h2 align="center">References</h2>
