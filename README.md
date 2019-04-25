@@ -1,10 +1,11 @@
 # A Natural Language Processing Framework for Training a Neural Network Chatbot
 
 <h2 align="center">About Project</h2>
-### Project Explanation
-The general context behind our project was to develop chatbot which could be trained on a given data set. Our first approach was to use **Google AIY Kit** and modify it to our needs, however while setting it up and experimenting with it we found out we could not achieve that. There were predefined programs ready for our use, which would mean it would not require much coding from us. Another issue with that approach were the dependencies and documentation that were not reliable.
 
-With that in mind we have decided that the best option for us would be to start from the beginning and develop our own chatbot from scratch. The chatbot we came up with, is using **tensorflow** to train data on a given model classification and then build upon that to handle responses once given input from the user. Further we added **client-server** side so that all the necessary response data could be stored on the **server** side, while **client** took care of interaction between user and the chatbot through the use of GUI (Graphical User Interface) which was coded up using **TkInter**.
+### Project Explanation
+<p>The general context behind our project was to develop chatbot which could be trained on a given data set. Our first approach was to use <strong>Google AIY Kit</strong> and modify it to our needs, however while setting it up and experimenting with it we found out we could not achieve that. There were predefined programs ready for our use, which would mean it would not require much coding from us. Another issue with that approach were the dependencies and documentation that were not reliable.</p>
+<br/>
+<p>With that in mind we have decided that the best option for us would be to start from the beginning and develop our own chatbot from scratch. The chatbot we came up with, is using <strong>tensorflow</strong> to train data on a given model classification and then build upon that to handle responses once given input from the user. Further we added <strong>client-server</strong> side so that all the necessary response data could be stored on the <strong>server</strong> side, while <strong>client</strong> took care of interaction between user and the chatbot through the use of GUI (Graphical User Interface) which was coded up using <strong>TkInter</strong></p>
 
 Simply put the way our project works is as follows:
 * Data extraction:
@@ -35,9 +36,38 @@ Simply put the way our project works is as follows:
 
 <h2 align="center">Background on Technologies Researched</h2>
 
-### Artificial Intelligence
 ### Natural Language Processing
 ### TensorFlow
 ### Neural Networks
 
 <h2 align="center">References</h2>
+
+### Natural Language Processing:
+* [Wikipedia](https://en.wikipedia.org/wiki/Natural_language_processing)
+* [Simple Introduction](https://becominghuman.ai/a-simple-introduction-to-natural-language-processing-ea66a1747b32)
+* [Why it Matters?](https://www.sas.com/en_ie/insights/analytics/what-is-natural-language-processing-nlp.html)
+* [Python Code Example](https://www.youtube.com/watch?list=PLQVvvaa0QuDf2JswnfiGkliBInZnIC4HL&v=FLZvOKSCkxY)
+### TensorFlow:
+* [Wikipedia](https://en.wikipedia.org/wiki/TensorFlow)
+* [Main Website](https://www.tensorflow.org/)
+* [Python Code Example](https://www.youtube.com/watch?list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v&v=dFARw8Pm0Gk)
+### Neural Networks:
+* [Wikipedia](https://en.wikipedia.org/wiki/Artificial_neural_network)
+* [Machine Learning with Python and Numpy](https://www.python-course.eu/neural_networks_with_python_numpy.php)
+* [Beginner's Guide](https://skymind.ai/wiki/neural-network)
+* [Python Code Example](https://www.youtube.com/watch?v=kft1AJ9WVDk)
+### Coding References:
+* [Client-Server](https://www.youtube.com/watch?v=WrtebUkUssc)
+* [Data Extraction](https://github.com/jfainberg/self_dialogue_corpus)
+* [TkInter](https://python-textbok.readthedocs.io/en/1.0/Introduction_to_GUI_Programming.html)
+* [GuiZero](https://lawsie.github.io/guizero/)
+* [Text to CSV Format](https://stackoverflow.com/questions/39642082/convert-txt-to-csv-python-script)
+* [CSV to JSON Format](https://stackoverflow.com/questions/19697846/how-to-convert-csv-file-to-multiline-json)
+* [Chatbot Example](https://blog.kovalevskyi.com/rnn-based-chatbot-for-6-hours-b847d2d92c43)
+* [Neural Network Example](https://youtu.be/FLZvOKSCkxY)
+* [Image Recognition Example](https://www.youtube.com/watch?list=PLQVvvaa0QuDffXBfcH9ZJuvctJV3OtB8A&v=hbL_FTEZSyY)
+* []()
+* []()
+* []()
+* []()
+* []()
