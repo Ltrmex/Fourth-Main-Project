@@ -1,11 +1,27 @@
-<h1 align="center">A Natural Language Processing Framework for Training a Neural Network Chatbot</h1> 
+<h1 align="center>A Natural Language Processing Framework for Training a Neural Network Chatbot</h1> 
+
+## Table of Contents  
+[1. Project Overview](#Overview)</br>
+[2. Project Structure](#Structure)</br>
+[3. Required to Run](#Required)</br>
+[4. How to Run](#Run)</br>
+[5. Example Output](#Output)</br>
+[6. Natural Language Processing](#Processing)</br>
+[7.TensorFlow](#TensorFlow)</br>
+[8. Neural Networks](#Networks)</br>
+[9. Technologies](#Technologies)</br>
+[10. References](#References)</br>
 
 <h2 align="center">About Project</h2>
 
-### Project Explanation
+<a name="Overview"/>
+
+### Project Overview
 <p>The general context behind our project was to develop chatbot which could be trained on a given data set. Our first approach was to use <strong>Google AIY Kit</strong> and modify it to our needs, however while setting it up and experimenting with it we found out we could not achieve that. There were predefined programs ready for our use, which would mean it would not require much coding from us. Another issue with that approach were the dependencies and documentation that were not reliable.</p>
 <br/>
 <p>With that in mind we have decided that the best option for us would be to start from the beginning and develop our own chatbot from scratch. The chatbot we came up with, is using <strong>tensorflow</strong> to train data on a given model classification and then build upon that to handle responses once given input from the user. Further we added <strong>client-server</strong> side so that all the necessary response data could be stored on the <strong>server</strong> side, while <strong>client</strong> took care of interaction between user and the chatbot through the use of GUI (Graphical User Interface) which was coded up using <strong>TkInter.</strong></p>
+
+<a name="Structure"/>
 
 ### Project Structure
 Simply put the way our project works is as follows:
@@ -30,12 +46,18 @@ Simply put the way our project works is as follows:
   * Client sends requests with a given message over the socket connection, and it receives back a response from a server which is then displayed in the GUI.
   * Logic behind the client and it's GUI can be seen in **client.py** file.
   
- **PHOTO OF STRUCTURE HERE**
-  
+<p align="center">
+  <img src="Images/Chatbot_Diagram.jpg" alt="Image" width="1036" height="346" />
+</p>
+
+<a name="Required"/>
+
 ### Required to Run
 
 * **Make sure Python programming language is installed, download from here:** [Python Anaconda](https://www.anaconda.com/distribution/)
 * **Run the following command:** `pip install -r requirements.txt`
+
+<a name="Run"/>
 
 ### How to Run
 
@@ -48,11 +70,15 @@ Simply put the way our project works is as follows:
 * **Run Client**
   * `python client.py`
 
+<a name="Output"/>
+
 ### Example Output
 **PHOTOS HERE**
 
 
 <h2 align="center">Background on Technologies Researched</h2>
+
+<a name="Processing"/>
 
 ### Natural Language Processing
 
@@ -62,6 +88,8 @@ Simply put the way our project works is as follows:
 <br/>
 <p>Throughout our project we have researched and tested how NLP functions through coding and reading up online resources. We felt like this was huge step in completion of our project as Chatbot should react only to certain words in the sentence, and come up with reasonable answer. There is a set of examples (Code/NLP (Natural Language Processing)) of how natural processing works. That set of examples was completed through the use of Natural Language Toolkit. The Natural Language Toolkit, or more commonly NLTK, is a suite of libraries and programs for symbolic and statistical natural language processing (NLP) for English written in the Python programming language. </p>
 
+<a name="TensorFlow"/>
+
 ### TensorFlow
 <p>TensorFlow is a free and open-source software library for dataflow and differentiable programming across a range of tasks. It is a symbolic math library, and is also used for machine learning applications such as neural networks.</p>
 <br/>
@@ -69,11 +97,18 @@ Simply put the way our project works is as follows:
 <br/>
 <p>In our project we have used TensorFlow to create and train our model (<strong>chat_model.py</strong>). Given <strong>intents.json</strong> file where the data set is stored. TensorFlow takes train and test lists, model and neural network to train and test our data. Which then is used in <strong>chat_response.py</strong></p>
 
+<a name="Networks"/>
+
 ### Neural Networks
 <p>Artificial neural networks (ANN) or connectionist systems are computing systems vaguely inspired by the biological neural networks that constitute animal brains. The neural network itself is not an algorithm, but rather a framework for many different machine learning algorithms to work together and process complex data inputs. Such systems "learn" to perform tasks by considering examples, generally without being programmed with any task-specific rules.</p>
 <br/>
 <p>For example, after our chatbot model has been trained it will answer to any relating topic it was trained on, even if the question is not fully parsed, e.g. if user were to input 'What did you think of The Babadook?' it would come up with one of the responses it was trained on, the same would happen if one would simply input 'Babadook'. Even though the word 'Babadook' is not defined on it's own in the data set by using and training the neural network it would still make the connection to the given word.</p>
 
+<a name="Technologies"/>
+<h2 align="center">Technologies</h2>
+
+
+<a name="References"/>
 <h2 align="center">References</h2>
 
 ### Natural Language Processing:
@@ -100,8 +135,4 @@ Simply put the way our project works is as follows:
 * [Chatbot Example](https://blog.kovalevskyi.com/rnn-based-chatbot-for-6-hours-b847d2d92c43)
 * [Neural Network Example](https://youtu.be/FLZvOKSCkxY)
 * [Image Recognition Example](https://www.youtube.com/watch?list=PLQVvvaa0QuDffXBfcH9ZJuvctJV3OtB8A&v=hbL_FTEZSyY)
-* []()
-* []()
-* []()
-* []()
-* []()
+
