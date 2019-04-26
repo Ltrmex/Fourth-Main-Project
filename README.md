@@ -143,9 +143,22 @@ Simply put the way our project works is as follows:
 <a name="Technologies"/>
 <h2 align="center">Technologies</h2>
 
-xxx                        |  zzz                      |  ooo                  
+JSON                       |  CSV                      |  LaTex               
 :-------------------------:|:-------------------------:|:-------------------------:
-![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/chat_model.PNG)  |  ![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/chat_model.PNG)      | ![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/chat_model.PNG)
+![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/json-logo.png)  |  ![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/csv.png)      | ![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/LaTex.png)
+
+Visual Studio Code         |  Python                     |  TkInter              
+:-------------------------:|:-------------------------:|:-------------------------:
+![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/VisualStudioCode1.png)  |  ![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/Python.png)      | ![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/Tk.jpg)
+
+TensorFlow                 |Natural Language Processing| Google Cloud               
+:-------------------------:|:-------------------------:|:-------------------------:
+![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/TensorFlow.png)  |  ![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/nlp.jpg)      | ![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/Google_cloud.png)
+
+SQLite                     |  MySQL                    | Google Voice Kit               
+:-------------------------:|:-------------------------:|:-------------------------:
+![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/SQLite3.png)  |  ![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/MySQL-Logo.png)      | ![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/voice-Kit.jpg)
+
 
 <a name="References"/>
 <h2 align="center">References</h2>
