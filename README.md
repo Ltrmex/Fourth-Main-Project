@@ -1,4 +1,4 @@
-<h1 align="center>A Natural Language Processing Framework for Training a Neural Network Chatbot</h1> 
+<h1 align="center">A Natural Language Processing Framework for Training a Neural Network Chatbot</h1> 
 
 ## Table of Contents  
 [1. Project Overview](#Overview)</br>
@@ -25,30 +25,59 @@
 
 ### Project Structure
 Simply put the way our project works is as follows:
+
+<p align="center">
+  <img src="Images/Chatbot_Diagram.jpg" alt="Image" width="1036" height="346" />
+</p>
+
 * Data extraction:
   * This mainly happens in 'get_data.py' where depending on input it generates a set of exchanges of conversations between two people on a given topic from corpus data.
+<p align="center">
+  <img src="Images/getData.PNG" alt="Image" width="800" height="250" />
+</p> 
+  
 * Data conversion:
   * This happens in **txtToCsv.py** and **csvToJson.py**
   * **txtToCsv.py** loops through all the conversations stored in dialogues folder and converts them all into CSV(Comma-Separated Values) format, also called excel format, into a single CSV file.
-  * **csvToJson.py** converts previously generated CSV file into a JSON(JavaScript Object Notation) format. Main reason for this is that training was set up in a way to accept only JSON file formats.
+  
+<p align="center">
+  <img src="Images/textToCsv.PNG" alt="Image" width="800" height="250" />
+</p> 
+
+* **csvToJson.py** converts previously generated CSV file into a JSON(JavaScript Object Notation) format. Main reason for this is that training was set up in a way to accept only JSON file formats.
+  
+<p align="center">
+  <img src="Images/csvToJson.PNG" alt="Image" width="800" height="250" />
+</p> 
+
 * Clean up:
-  * After successful extraction and conversion of data, next step is to check if the file is correctly set up after which data then can be added to the main data collection which is stored inside **intents.json** file.
+  * After successful extraction and conversion of data, next step is to check if the file is correctly set up after which data then can be added to the main data collection which is stored inside **intents.json** file. 
 * Training:
   * Training happens in **chat_model.py** using **intents.json** file.
+  
+<p align="center">
+  <img src="Images/chat_model.PNG" alt="Image" width="800" height="450" />
+</p> 
+
 * Response Handler:
   * Response hadnler is responsible to handle responses between user and the chatbot and it's happening in **chat_response.py**.
 * Server:
   * On server side is where data, training data, and response handler is stored.
   * Server allows up to five connections at the same time, and **server.py** file is responsible for those actions.
   * Server is connected up with response handler, as it handles user requests.
+  
+<p align="center">
+  <img src="Images/server.PNG" alt="Image" width="800" height="450" />
+</p>   
+  
 * Client:
   * Client is responsible for interaction between user and the chatbot. It is where data is displayed visually through the use of GUI.
   * Client sends requests with a given message over the socket connection, and it receives back a response from a server which is then displayed in the GUI.
   * Logic behind the client and it's GUI can be seen in **client.py** file.
   
 <p align="center">
-  <img src="Images/Chatbot_Diagram.jpg" alt="Image" width="1036" height="346" />
-</p>
+  <img src="Images/client.PNG" alt="Image" width="800" height="200" />
+</p>   
 
 <a name="Required"/>
 
@@ -73,7 +102,14 @@ Simply put the way our project works is as follows:
 <a name="Output"/>
 
 ### Example Output
-**PHOTOS HERE**
+
+<p align="center">
+  <img src="Images/inputName.PNG" alt="Image" width="800" height="450" />
+</p> 
+
+<p align="center">
+  <img src="Images/chat.PNG" alt="Image" width="800" height="450" />
+</p>  
 
 
 <h2 align="center">Background on Technologies Researched</h2>
@@ -107,6 +143,9 @@ Simply put the way our project works is as follows:
 <a name="Technologies"/>
 <h2 align="center">Technologies</h2>
 
+xxx                        |  zzz                      |  ooo                  
+:-------------------------:|:-------------------------:|:-------------------------:
+![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/chat_model.PNG)  |  ![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/chat_model.PNG)      | ![alt text](https://github.com/Ltrmex/Fourth-Main-Project/blob/master/Images/chat_model.PNG)
 
 <a name="References"/>
 <h2 align="center">References</h2>
